@@ -1,0 +1,2 @@
+rootProject.name = "Doğrusunu Öğren"
+include ':app'
