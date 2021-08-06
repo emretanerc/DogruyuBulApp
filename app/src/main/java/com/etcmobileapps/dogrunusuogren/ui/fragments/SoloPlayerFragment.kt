@@ -71,15 +71,14 @@ class SoloPlayerFragment : Fragment() {
 
 
                 var value = response.body()
+                val rnds = (1..42).random()
+                trueValue = value?.get(rnds)?.trueword.toString()
+                var falseWord = value?.get(rnds)?.falseword.toString()
+
+
 
                 resetButtons()
-
-                val rnds = (1..43).random()
-
-                trueValue = value?.get(rnds)?.trueword
-
-                binding.firstWordValue.setText(value?.get(rnds)?.trueword.toString())
-                binding.secondWordValue.setText(value?.get(rnds)?.falseword.toString())
+                shuffleWords(trueValue!!,falseWord)
 
             }
 
@@ -97,7 +96,7 @@ class SoloPlayerFragment : Fragment() {
 
         } else {
 
-            binding.secondLayout.setBackgroundResource(R.drawable.falseicon)
+            binding.firstLayout.setBackgroundResource(R.drawable.falseicon)
             newQuestionWait(false)
         }
 
@@ -161,6 +160,21 @@ class SoloPlayerFragment : Fragment() {
         }
 
 
+    }
+
+    fun shuffleWords(word1: String,word2:String) {
+
+
+        val rnds = (0..1).random()
+
+        if (rnds==0) {
+            binding.secondWordValue.text =(word1)
+            binding.firstWordValue.text = word2
+        } else {
+
+            binding.secondWordValue.text = (word2)
+            binding.firstWordValue.text = (word1)
+        }
     }
 }
 

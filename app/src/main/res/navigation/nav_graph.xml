@@ -10,7 +10,8 @@
         android:label="MenuFragment" >
         <action
             android:id="@+id/action_menuFragment_to_soloPlayerFragment"
-            app:destination="@id/soloPlayerFragment" />
+            app:destination="@id/soloPlayerFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/soloPlayerFragment"
