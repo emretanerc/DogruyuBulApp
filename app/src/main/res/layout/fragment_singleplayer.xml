@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/scoreLayout"
+        android:layout_width="195dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginBottom="103dp"
+        android:background="@drawable/score"
+        app:layout_constraintBottom_toTopOf="@+id/firstLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/scoreValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:paddingLeft="80dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            android:text="100"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/firstLayout"
+        android:layout_width="340dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="258dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/buttonbg"
+        android:gravity="center"
+
+        android:onClick="clickedUp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/secondLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/firstWordValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:paddingBottom="20sp"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLayout"
+        android:layout_width="340dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="356dp"
+        android:background="@drawable/buttonbg"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstLayout">
+
+        <TextView
+            android:id="@+id/secondWordValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:paddingBottom="20sp"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/powerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="155dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/secondLayout"
+        app:srcCompat="@drawable/passicon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

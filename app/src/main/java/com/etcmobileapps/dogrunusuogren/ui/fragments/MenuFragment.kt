@@ -25,7 +25,7 @@ class MenuFragment : Fragment() {
 
 
         binding.playButton.setOnClickListener {
-        findNavController().navigate(R.id.action_menuFragment_to_soloPlayerFragment)
+        findNavController().navigate(R.id.action_menuFragment_to_singlePlayerFragment)
         }
 
         return binding.root

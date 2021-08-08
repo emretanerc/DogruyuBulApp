@@ -9,12 +9,36 @@
         android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.MenuFragment"
         android:label="MenuFragment" >
         <action
-            android:id="@+id/action_menuFragment_to_soloPlayerFragment"
-            app:destination="@id/soloPlayerFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            android:id="@+id/action_menuFragment_to_singlePlayerFragment"
+            app:destination="@id/singlePlayerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/soloPlayerFragment"
-        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.SoloPlayerFragment"
-        android:label="SoloPlayerFragment" />
+        android:id="@+id/singlePlayerResultFragment"
+        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.SinglePlayerResultFragment"
+        android:label="SinglePlayerResultFragment" >
+        <argument
+            android:name="scoreValueArg"
+            app:argType="string" />
+        <argument android:name="trueValueArg"
+            app:argType="string" />
+        <argument
+            android:name="falseValueArg"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_singlePlayerResultFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_singlePlayerResultFragment_to_singlePlayerFragment"
+            app:destination="@id/singlePlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/singlePlayerFragment"
+        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.SinglePlayerFragment"
+        android:label="SinglePlayerFragment" >
+        <action
+            android:id="@+id/action_singlePlayerFragment_to_singlePlayerResultFragment"
+            app:destination="@id/singlePlayerResultFragment" />
+
+    </fragment>
 </navigation>
