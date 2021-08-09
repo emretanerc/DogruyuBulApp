@@ -1,18 +1,11 @@
 package com.etcmobileapps.dogrunusuogren.ui.fragments
 
-import com.etcmobileapps.dogrunusuogren.databinding.ActivityMainBinding.inflate
 
-
-import Question
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-
 import android.view.LayoutInflater
-
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -43,7 +36,15 @@ class SinglePlayerResultFragment : Fragment() {
         setOnclick()
 
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
 
+                    findNavController().navigate(R.id.menuFragment)
+
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
 
 

@@ -50,10 +50,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,10 +77,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -95,35 +99,37 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="0.10"
-                    app:srcCompat="@drawable/scoreicon" />
+                    app:srcCompat="@drawable/score" />
 
                 <TextView
                     android:id="@+id/scoreValue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/regular"
                     android:gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/restartButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0.08"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/restartbuttonicon" />
 
             <ImageButton
                 android:id="@+id/mainMenuButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0.08"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/mainmenubuttonicon" />
 
         </LinearLayout>

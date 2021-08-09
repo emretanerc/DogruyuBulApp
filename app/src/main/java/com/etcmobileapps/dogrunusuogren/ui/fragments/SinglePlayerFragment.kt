@@ -2,15 +2,18 @@ package com.etcmobileapps.dogrunusuogren.ui.fragments
 
 
 import Question
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 
 import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -34,6 +37,7 @@ private val  binding get() = _binding!!
 class SinglePlayerFragment : Fragment() {
     var trueValue: String? = null
     var falseValue: String? = null
+    var currentJoker: Int = 2
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +50,15 @@ class SinglePlayerFragment : Fragment() {
         setOnclick()
 
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
 
+                    findNavController().navigate(R.id.menuFragment)
+
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
 
         return binding.root
@@ -152,6 +164,7 @@ class SinglePlayerFragment : Fragment() {
     fun setOnclick () {
 
 
+        binding.jokerValue.text = currentJoker.toString()
 
         binding.firstLayout.setOnClickListener {
             clickedUpButton(binding.firstWordValue.text.toString())
@@ -219,15 +232,35 @@ class SinglePlayerFragment : Fragment() {
 
     fun usePowerButton() {
 
-      if (binding.firstWordValue.text.equals(trueValue)) {
+    if (currentJoker>0) {
 
-          clickedUpButton(binding.firstWordValue.text.toString())
+        currentJoker = currentJoker-1
 
-      } else {
+        if (binding.firstWordValue.text.equals(trueValue)) {
 
-          clickedDownButton(binding.secondWordValue.text.toString())
+            clickedUpButton(binding.firstWordValue.text.toString())
 
-      }
+        } else {
+
+            clickedDownButton(binding.secondWordValue.text.toString())
+
+        }
+
+        if (currentJoker==0) {
+            binding.jokerLayout.setBackgroundResource(R.drawable.jokeremptyicon)
+            binding.jokerValue.text=""
+        } else {
+            binding.jokerValue.text=currentJoker.toString()
+        }
+
+
+    } else {
+
+        Toast.makeText(context, "Şuan jokeriniz bulunmamaktadır.", Toast.LENGTH_SHORT).show()
+
+
+    }
+
 
 
     }
@@ -240,5 +273,7 @@ class SinglePlayerFragment : Fragment() {
         binding.scoreValue.setText(newScore.toString())
 
     }
+
+
 }
 

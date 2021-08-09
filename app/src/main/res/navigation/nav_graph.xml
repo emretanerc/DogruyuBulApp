@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/menuFragment">
 
@@ -11,6 +12,12 @@
         <action
             android:id="@+id/action_menuFragment_to_singlePlayerFragment"
             app:destination="@id/singlePlayerFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_scoreboardFragment"
+            app:destination="@id/scoreboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/singlePlayerResultFragment"
@@ -41,4 +48,13 @@
             app:destination="@id/singlePlayerResultFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/scoreboardFragment"
+        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.ScoreboardFragment"
+        android:label="ScoreboardFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
