@@ -102,7 +102,7 @@
                     app:srcCompat="@drawable/score" />
 
                 <TextView
-                    android:id="@+id/scoreValue"
+                    android:id="@+id/scoreValueTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

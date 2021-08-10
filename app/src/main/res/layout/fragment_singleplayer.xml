@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/scoreValue"
+            android:id="@+id/scoreValueTv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/bold"
@@ -27,7 +27,7 @@
             android:paddingLeft="70dp"
             android:paddingRight="5dp"
             android:paddingBottom="2dp"
-            android:text="100"
+            android:text="0"
             android:textAlignment="center"
             android:textColor="#454545"
             android:textSize="21sp"

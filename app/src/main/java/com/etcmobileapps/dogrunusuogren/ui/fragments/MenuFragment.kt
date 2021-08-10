@@ -1,10 +1,12 @@
 package com.etcmobileapps.dogrunusuogren.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.etcmobileapps.dogrunusuogren.R
@@ -26,6 +28,7 @@ class MenuFragment : Fragment() {
 
         setOnClick()
         startShakeAnimation()
+        getPrefences()
 
         return binding.root
     }
@@ -62,4 +65,34 @@ class MenuFragment : Fragment() {
         //binding.scoreBoardButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
        // binding.profileButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
     }
+
+    fun getPrefences() {
+
+
+        val prefences = requireActivity().getSharedPreferences("SCORE", Context.MODE_PRIVATE)
+        var currentGold = prefences.getInt("KEY_SCORE",100)
+        var userName = prefences.getString("KEY_USERNAME",null)
+
+        if (userName==null) {
+
+            val editor = prefences.edit()
+            editor.putString("KEY_USERNAME",randomUserName())
+            editor.apply()
+        }
+
+
+        binding.scoreValueTv.text = currentGold.toString()
+
+    }
+
+    fun randomUserName(): String {
+
+
+
+        val rnds = (1..999).random()
+        var userName = "anon" + rnds.toString() + rnds.toString()
+
+        return userName
+    }
+
 }

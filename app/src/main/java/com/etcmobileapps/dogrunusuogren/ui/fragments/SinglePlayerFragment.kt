@@ -121,7 +121,7 @@ class SinglePlayerFragment : Fragment() {
             //newQuestionWait(false)
 
             val action = SinglePlayerFragmentDirections.actionSinglePlayerFragmentToSinglePlayerResultFragment(
-                binding.scoreValue.text.toString(),trueValue.toString(),falseValue.toString())
+                binding.scoreValueTv.text.toString(),trueValue.toString(),falseValue.toString())
 
             Navigation.findNavController(requireView()).navigate(action)
 
@@ -150,7 +150,7 @@ class SinglePlayerFragment : Fragment() {
 
 
                val action = SinglePlayerFragmentDirections.actionSinglePlayerFragmentToSinglePlayerResultFragment(
-                   binding.scoreValue.text.toString(),trueValue.toString(),falseValue.toString())
+                   binding.scoreValueTv.text.toString(),trueValue.toString(),falseValue.toString())
 
                 Navigation.findNavController(requireView()).navigate(action)
 
@@ -268,9 +268,9 @@ class SinglePlayerFragment : Fragment() {
 
     fun setScore() {
 
-        var currentScore = parseInt(binding.scoreValue.text.toString())
+        var currentScore = parseInt(binding.scoreValueTv.text.toString())
         var newScore = currentScore + 100
-        binding.scoreValue.setText(newScore.toString())
+        binding.scoreValueTv.setText(newScore.toString())
 
     }
 

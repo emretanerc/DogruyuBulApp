@@ -2,9 +2,9 @@ package com.etcmobileapps.dogrunusuogren.data
 
 import Question
 import com.etcmobileapps.dogrunusuogren.model.Score
+import com.etcmobileapps.dogrunusuogren.model.UpdateScore
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -15,6 +15,9 @@ interface ApiService {
     @GET("skorlar.php?")
     fun getScoreboard():Call<List<Score>>
 
+    @GET()
+    fun setScore(@Url url : String): Call<List<UpdateScore>> //
 
-
+    @GET()
+    fun setUserName(@Url url : String): Call<List<UpdateScore>> //
 }
