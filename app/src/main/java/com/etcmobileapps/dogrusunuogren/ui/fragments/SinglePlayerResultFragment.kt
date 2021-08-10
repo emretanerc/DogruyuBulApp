@@ -13,9 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.etcmobileapps.dogrunusuogren.R
+
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentSingleplayerfinishBinding
-import com.etcmobileapps.dogrunusuogren.model.Score
+
+
 import com.etcmobileapps.dogrunusuogren.model.UpdateScore
 import retrofit2.Call
 import retrofit2.Callback

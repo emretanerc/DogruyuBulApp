@@ -9,7 +9,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.etcmobileapps.dogrunusuogren.R
+
 import com.etcmobileapps.dogrunusuogren.model.Score
+
 
 
 class ScoreboardRowAdapter(private val context: Context, private val mScores: List<Score>, private val mRowLayout: Int) : RecyclerView.Adapter<ScoreboardRowAdapter.ScoreViewHolder>() {

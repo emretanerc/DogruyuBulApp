@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.DoğrusunuÖğren">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.etcmobileapps.dogrusunuogren.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

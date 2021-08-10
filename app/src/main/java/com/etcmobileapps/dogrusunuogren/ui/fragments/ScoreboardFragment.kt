@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.etcmobileapps.dogrunusuogren.adapters.ScoreboardRowAdapter
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentScoreboardBinding
+
 import com.etcmobileapps.dogrunusuogren.model.Score
 import com.etcmobileapps.dogrunusuogren.model.UpdateScore
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

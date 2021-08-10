@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/singlePlayerFragment"
-        android:name="com.etcmobileapps.dogrunusuogren.ui.fragments.SinglePlayerFragment"
+        android:name="com.etcmobileapps.dogrusunuogren.ui.fragments.SinglePlayerFragment"
         android:label="SinglePlayerFragment" >
         <action
             android:id="@+id/action_singlePlayerFragment_to_singlePlayerResultFragment"

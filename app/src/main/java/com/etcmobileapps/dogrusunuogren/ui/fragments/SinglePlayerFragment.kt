@@ -1,12 +1,10 @@
-package com.etcmobileapps.dogrunusuogren.ui.fragments
+package com.etcmobileapps.dogrusunuogren.ui.fragments
 
 
 import Question
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 
 import android.view.LayoutInflater
 
@@ -17,12 +15,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.etcmobileapps.dogrunusuogren.MainActivity
 import com.etcmobileapps.dogrunusuogren.R
+
+
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentSingleplayerBinding
 
-import com.google.gson.Gson
+
 import retrofit2.Call
 
 import retrofit2.Callback

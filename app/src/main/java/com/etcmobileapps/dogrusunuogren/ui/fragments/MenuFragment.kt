@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.etcmobileapps.dogrunusuogren.R
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentMenuBinding
 
+
 private var _binding: FragmentMenuBinding? = null
 private val  binding get() = _binding!!
 
