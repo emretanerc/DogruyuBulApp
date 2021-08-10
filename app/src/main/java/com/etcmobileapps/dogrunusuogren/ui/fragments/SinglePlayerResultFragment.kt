@@ -110,7 +110,7 @@ class SinglePlayerResultFragment : Fragment() {
 
 
 
-        ApiClient.getApiService().setScore("skorkaydet.php?name=" + userName + "&score=" + currentGold).enqueue(object : Callback<List<UpdateScore>> {
+        ApiClient.getApiService().setScore("skorkaydet.php?name=" + userName + "&score=" + parseInt(args.scoreValueArg)).enqueue(object : Callback<List<UpdateScore>> {
 
 
             override fun onFailure(call: Call<List<UpdateScore>>, t: Throwable) {

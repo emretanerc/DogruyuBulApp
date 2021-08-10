@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.PopupMenu
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -53,8 +55,8 @@ class MenuFragment : Fragment() {
         }
 
 
-        binding.profileButton.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_profileFragment)
+        binding.optionLayout.setOnClickListener {
+            //findNavController().navigate(R.id.action_menuFragment_to_profileFragment)
         }
 
     }
@@ -62,7 +64,7 @@ class MenuFragment : Fragment() {
     fun startShakeAnimation() {
        //  binding.playButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
         binding.logoView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
-        //binding.scoreBoardButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
+        //binding.optionLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.moreshake))
        // binding.profileButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
     }
 
@@ -81,7 +83,7 @@ class MenuFragment : Fragment() {
         }
 
 
-        binding.scoreValueTv.text = currentGold.toString()
+
 
     }
 

@@ -1,16 +1,12 @@
 package com.etcmobileapps.dogrunusuogren.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Color.green
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.ColorRes
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.etcmobileapps.dogrunusuogren.R
 import com.etcmobileapps.dogrunusuogren.model.Score
@@ -91,7 +87,7 @@ class ScoreboardRowAdapter(private val context: Context, private val mScores: Li
         val id = containerView.findViewById<TextView>(R.id.idTv)
         val name = containerView.findViewById<TextView>(R.id.userNameTv)
         val score = containerView.findViewById<TextView>(R.id.scoreValueTv)
-        val scoreLayout = containerView.findViewById<LinearLayout>(R.id.scoreLayout)
+        val scoreLayout = containerView.findViewById<LinearLayout>(R.id.optionLayout)
     }
 
 

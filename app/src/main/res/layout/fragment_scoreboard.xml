@@ -8,31 +8,107 @@
 
     <ImageButton
         android:id="@+id/textView2"
-        android:layout_width="350dp"
+        android:layout_width="325dp"
         android:layout_height="100dp"
-        android:layout_marginTop="15dp"
 
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="43dp"
         android:background="@drawable/scoreboardbuttonicon"
         android:fontFamily="@font/bold"
         android:gravity="center"
         android:paddingBottom="20dp"
         android:scaleType="fitCenter"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/scoreView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/scoreView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:textAlignment="center"
-
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="414dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="35dp"
+        android:background="#5B000000"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/scoreView">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="292dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/buttonbg"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:paddingBottom="25dp"
+                android:text="Kullanıcı Adı: "
+                android:textAlignment="viewEnd"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/userNameTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:paddingBottom="26dp"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textColorHighlight="#00FFFFFF"
+                android:textColorHint="#00FFFFFF"
+                android:textColorLink="#00FFFFFF"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/changeButton"
+            android:layout_width="111dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/trueicon"
+            android:fontFamily="@font/regular"
+            android:paddingBottom="30dp"
+            android:text="DEĞİŞTİR"
+            android:textSize="20sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scoreView"
+        android:layout_width="401dp"
+        android:layout_height="431dp"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="2dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

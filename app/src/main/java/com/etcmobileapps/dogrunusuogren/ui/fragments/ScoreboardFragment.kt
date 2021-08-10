@@ -1,23 +1,26 @@
 package com.etcmobileapps.dogrunusuogren.ui.fragments
 
 import android.R
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etcmobileapps.dogrunusuogren.adapters.ScoreboardRowAdapter
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
-import com.etcmobileapps.dogrunusuogren.databinding.FragmentProfileBinding
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentScoreboardBinding
 import com.etcmobileapps.dogrunusuogren.model.Score
+import com.etcmobileapps.dogrunusuogren.model.UpdateScore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 private var _binding: FragmentScoreboardBinding? = null
 private val  binding get() = _binding!!
@@ -25,7 +28,7 @@ private val  binding get() = _binding!!
 class ScoreboardFragment : Fragment() {
     private var mAdapter: ScoreboardRowAdapter?= null;
     private var mQuestions: MutableList<Score> = ArrayList()
-
+    var currentUserName : String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +41,8 @@ class ScoreboardFragment : Fragment() {
         mAdapter = ScoreboardRowAdapter(requireContext(), mQuestions, R.layout.simple_list_item_1)
         binding.scoreView!!.adapter = mAdapter
 
-
+        setOnClick()
+        getSpecs()
         getScores()
 
         return binding.root
@@ -48,6 +52,17 @@ class ScoreboardFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    fun setOnClick () {
+
+
+        binding.changeButton.setOnClickListener {
+            setUserName(binding.userNameTv.text.toString(), currentUserName.toString())
+        }
+
+
     }
 
     fun getScores() {
@@ -68,6 +83,7 @@ class ScoreboardFragment : Fragment() {
                 val scores = response.body()
 
                 if (scores != null) {
+                    mQuestions.clear()
                     mQuestions.addAll(scores!!)
                     mAdapter!!.notifyDataSetChanged()
                 }
@@ -82,5 +98,69 @@ class ScoreboardFragment : Fragment() {
 
         })
 
+    }
+
+    fun setUserName (newUserName : String, oldUserName : String) {
+
+
+        ApiClient.getApiService().setUserName("isimdegistir.php?name="+ newUserName + "&oldname=" + oldUserName).enqueue(object : Callback<List<UpdateScore>> {
+            override fun onFailure(call: Call<List<UpdateScore>>, t: Throwable) {
+
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+
+            override fun onResponse(
+                call: Call<List<UpdateScore>>,
+                response: Response<List<UpdateScore>>
+            ) {
+
+                var value = response.body()
+
+                if (value!![0].status.equals("Username has been changed.")) {
+
+                    Toast.makeText(context, "Kullanıcı adı başarıyla değiştirildi", Toast.LENGTH_SHORT).show()
+
+                    val prefences = requireActivity().getSharedPreferences("SCORE", Context.MODE_PRIVATE)
+                    val editor = prefences.edit()
+                    var  userName = prefences.getString("KEY_USERNAME",null)
+                    editor.putString("KEY_USERNAME", newUserName)
+                    editor.apply()
+                    getScores()
+                    hideKeyboard(requireView())
+
+                } else if (value!![0].status.equals("This username has already been taken.")) {
+
+                    Toast.makeText(context, "Kullanıcı adı kullanılıyor.", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+
+        })
+
+
+    }
+
+
+    fun getSpecs() {
+
+        val prefences = requireActivity().getSharedPreferences("SCORE", Context.MODE_PRIVATE)
+        val editor = prefences.edit()
+
+
+        currentUserName = prefences.getString("KEY_USERNAME",null)
+
+        binding.userNameTv.setText(currentUserName)
+
+
+
+    }
+
+
+    fun hideKeyboard(view: View) {
+        val inputMethodManager =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
+        inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
