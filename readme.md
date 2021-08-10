@@ -11,7 +11,7 @@ Uygulama Özellikleri
 - Tek Kişilik sınırsız oyun
 - Oyuncular Arası Yüksek Skorlar Ekranı
 - Üyeliksiz Rastgele anonim isim ve daha sonradan ismi kişiselleştirme imkanı.
--
+
 
 
 Teknik Bilgiler
