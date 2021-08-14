@@ -2,14 +2,19 @@ package com.etcmobileapps.dogrusunuogren.ui.fragments
 
 
 import Question
+import android.app.Activity
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 
 import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -20,6 +25,11 @@ import com.etcmobileapps.dogrunusuogren.R
 
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentSingleplayerBinding
+import com.etcmobileapps.dogrusunuogren.MainActivity
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
 
 import retrofit2.Call
@@ -36,7 +46,12 @@ private val  binding get() = _binding!!
 class SinglePlayerFragment : Fragment() {
     var trueValue: String? = null
     var falseValue: String? = null
-    var currentJoker: Int = 2
+    var currentJoker: Int = 0
+    private var mRewardedAd: RewardedAd? = null
+    private final var TAG = "MainActivity"
+    lateinit var mAdView : AdView
+    var level: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,8 +60,6 @@ class SinglePlayerFragment : Fragment() {
         _binding = FragmentSingleplayerBinding.inflate(inflater,container,false)
 
 
-        getQuestion()
-        setOnclick()
 
 
         val callback: OnBackPressedCallback =
@@ -60,9 +73,20 @@ class SinglePlayerFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
 
+
+
+
         return binding.root
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        getQuestion()
+        setOnclick()
+        //loadAdRewarded()
+        loadBanner()
+    }
 
 
 
@@ -73,10 +97,13 @@ class SinglePlayerFragment : Fragment() {
 
 
     fun getQuestion() {
+
+
+
         ApiClient.getApiService().getQuestions().enqueue(object : Callback<List<Question>> {
             override fun onFailure(call: Call<List<Question>>, t: Throwable) {
 
-                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show()
             }
 
 
@@ -102,9 +129,23 @@ class SinglePlayerFragment : Fragment() {
 
         })
 
+
+
+        if (level%10==0) {
+
+            currentJoker = currentJoker + 1
+            binding.jokerValue.text = currentJoker.toString()
+            binding.jokerLayout.setBackgroundResource(R.drawable.jokericon)
+            binding.jokerLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
+            binding.powerButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
+        }
+
+
     }
 
     fun clickedUpButton (answer:String) {
+
+        level=level+1
 
         binding.firstLayout.isClickable = false
         binding.secondLayout.isClickable = false
@@ -132,6 +173,8 @@ class SinglePlayerFragment : Fragment() {
 
 
     fun clickedDownButton (answer:String) {
+
+        level=level+1
 
         binding.firstLayout.isClickable = false
         binding.secondLayout.isClickable = false
@@ -231,9 +274,13 @@ class SinglePlayerFragment : Fragment() {
 
     fun usePowerButton() {
 
+    //    startShakeAnimation()
+
+
     if (currentJoker>0) {
 
         currentJoker = currentJoker-1
+        //Toast.makeText(context, currentJoker.toString(), Toast.LENGTH_SHORT).show()
 
         if (binding.firstWordValue.text.equals(trueValue)) {
 
@@ -245,17 +292,26 @@ class SinglePlayerFragment : Fragment() {
 
         }
 
+
         if (currentJoker==0) {
             binding.jokerLayout.setBackgroundResource(R.drawable.jokeremptyicon)
+            //binding.powerButton.setImageDrawable(null)
+            //binding.powerButton.setBackgroundResource(R.drawable.watchadicon)
             binding.jokerValue.text=""
+
         } else {
             binding.jokerValue.text=currentJoker.toString()
+
+
         }
+
 
 
     } else {
 
         Toast.makeText(context, "Şuan jokeriniz bulunmamaktadır.", Toast.LENGTH_SHORT).show()
+
+     //   showAd()
 
 
     }
@@ -272,6 +328,83 @@ class SinglePlayerFragment : Fragment() {
         binding.scoreValueTv.setText(newScore.toString())
 
     }
+
+
+
+    fun showAd() {
+
+
+        if (mRewardedAd != null) {
+            mRewardedAd?.show(requireActivity(), OnUserEarnedRewardListener() {
+                fun onUserEarnedReward(rewardItem: RewardItem) {
+
+                }
+            })
+        } else {
+            Log.d(TAG, "The rewarded ad wasn't ready yet.")
+        }
+
+
+    }
+
+    fun loadBanner() {
+
+
+        MobileAds.initialize(context) {}
+
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+
+    }
+    fun loadAdRewarded() {
+
+        var adRequest = AdRequest.Builder().build()
+
+        RewardedAd.load(requireActivity(),"ca-app-pub-4275218970636966/9915542255", adRequest, object : RewardedAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+              //  Log.d(TAG, adError?.message)
+                mRewardedAd = null
+
+            }
+
+            override fun onAdLoaded(rewardedAd: RewardedAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mRewardedAd = rewardedAd
+            }
+        })
+
+        mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            override fun onAdShowedFullScreenContent() {
+                // Called when ad is shown.
+                Log.d(TAG, "Ad was shown.")
+              //  currentJoker = 1
+              //  binding.jokerValue.text="1"
+              //  binding.jokerLayout.setBackgroundResource(R.drawable.jokericon)
+            }
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                // Called when ad fails to show.
+                Log.d(TAG, "Ad failed to show.")
+            }
+
+            override fun onAdDismissedFullScreenContent() {
+                // Called when ad is dismissed.
+                // Set the ad reference to null so you don't show the ad a second time.
+                Log.d(TAG, "Ad was dismissed.")
+                mRewardedAd = null
+            }
+        }
+    }
+
+    fun startShakeAnimation() {
+        //  binding.playButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
+    //   binding.jokerLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
+        //binding.optionLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.moreshake))
+        // binding.profileButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.shake))
+    }
+
 
 
 }

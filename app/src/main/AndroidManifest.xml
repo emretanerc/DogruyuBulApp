@@ -14,7 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:theme="@style/Theme.DoğrusunuÖğren">
+
+
+                <meta-data
+                    android:name="com.google.android.gms.ads.APPLICATION_ID"
+                    android:value="ca-app-pub-4275218970636966~4367153366"/>
+
+
         <activity android:name="com.etcmobileapps.dogrusunuogren.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

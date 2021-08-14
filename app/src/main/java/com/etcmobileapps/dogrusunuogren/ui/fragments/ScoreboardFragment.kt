@@ -9,14 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etcmobileapps.dogrunusuogren.adapters.ScoreboardRowAdapter
 import com.etcmobileapps.dogrunusuogren.data.ApiClient
 import com.etcmobileapps.dogrunusuogren.databinding.FragmentScoreboardBinding
 
-import com.etcmobileapps.dogrunusuogren.model.Score
+import com.etcmobileapps.dogrusunuogren.model.Score
 import com.etcmobileapps.dogrunusuogren.model.UpdateScore
 
 import retrofit2.Call
@@ -46,6 +47,7 @@ class ScoreboardFragment : Fragment() {
         setOnClick()
         getSpecs()
         getScores()
+        catchBackButton()
 
         return binding.root
     }
@@ -61,9 +63,14 @@ class ScoreboardFragment : Fragment() {
 
 
         binding.changeButton.setOnClickListener {
-            setUserName(binding.userNameTv.text.toString(), currentUserName.toString())
-        }
 
+            var newUserName = binding.userNameTv.text.toString()
+            if (newUserName.equals("")) {
+                Toast.makeText(context, "Kullanıcı adı boş seçilemez.", Toast.LENGTH_SHORT).show()
+            } else {
+                setUserName(binding.userNameTv.text.toString(), currentUserName.toString())
+            }
+        }
 
     }
 
@@ -164,5 +171,19 @@ class ScoreboardFragment : Fragment() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
         inputMethodManager!!.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+
+    fun catchBackButton () {
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+
+                    findNavController().navigate(com.etcmobileapps.dogrunusuogren.R.id.menuFragment)
+
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
+
     }
 }

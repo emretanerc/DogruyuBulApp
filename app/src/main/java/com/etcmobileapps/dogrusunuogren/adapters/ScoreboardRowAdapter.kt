@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.etcmobileapps.dogrunusuogren.R
 
-import com.etcmobileapps.dogrunusuogren.model.Score
+import com.etcmobileapps.dogrusunuogren.model.Score
 
 
 

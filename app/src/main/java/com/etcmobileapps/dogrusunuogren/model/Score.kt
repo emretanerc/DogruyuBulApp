@@ -1,4 +1,4 @@
-package com.etcmobileapps.dogrunusuogren.model
+package com.etcmobileapps.dogrusunuogren.model
 
 import com.google.gson.annotations.SerializedName
 
