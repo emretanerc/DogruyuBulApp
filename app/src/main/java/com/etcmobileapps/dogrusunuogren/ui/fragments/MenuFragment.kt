@@ -97,11 +97,14 @@ class MenuFragment : Fragment() {
         var currentGold = prefences.getInt("KEY_SCORE",100)
         var userName = prefences.getString("KEY_USERNAME",null)
 
+
         if (userName==null) {
             val editor = prefences.edit()
             editor.putString("KEY_USERNAME",randomUserName())
             editor.apply()
         }
+
+
 
 
 
@@ -113,7 +116,10 @@ class MenuFragment : Fragment() {
 
 
         val rnds = (1..99).random()
-        var userName = "anon" + rnds.toString() + rnds.toString() +rnds.toString()
+        val rnds2 = (1..99).random()
+        val rnds3 = (1..99).random()
+        val rnds4 = (1..10).random()
+        var userName = "anon" + rnds.toString() + rnds2.toString() +rnds3.toString()+rnds4.toString()
 
 
         return userName
@@ -216,7 +222,23 @@ class MenuFragment : Fragment() {
 
                 var lastVersion = value?.get(0)?.version
                 var feature = value?.get(0)?.feature
-                if (lastVersion==1) {
+
+
+
+                val prefences = requireActivity().getSharedPreferences("SCORE", Context.MODE_PRIVATE)
+                var totalQuestion = prefences.getInt("KEY_TOTALQUESTION",0)
+
+                if (totalQuestion==null) {
+                    val editor = prefences.edit()
+                    var totalQuestionValue = value?.get(0)?.totalQuestion
+                    editor.putInt("KEY_TOTALQUESTION", totalQuestionValue!!)
+                    editor.apply()
+                }
+
+
+
+                if (lastVersion==1)
+                {
 
                 } else {
                     showUpdateDialog(feature.toString())
@@ -246,7 +268,7 @@ class MenuFragment : Fragment() {
                     builder.setPositiveButton("Güncelle") { dialogInterface, which ->
 
                         startActivity(Intent(Intent.ACTION_VIEW).apply {
-                            data = Uri.parse("https://play.google.com/store/apps/details?id=com.etcmobileapps.dogrusunuogren")
+                            data = Uri.parse("https://play.google.com/store/apps/details?id=com.etcmobileapps.dogruyubulkelimeoyunu")
                         })
                         activity?.finish()
                     }

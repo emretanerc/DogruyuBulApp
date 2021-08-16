@@ -6,7 +6,7 @@ data class UpdateControl (
 
     @SerializedName("version") val version : Int?,
     @SerializedName("feature") val feature : String?,
-
+    @SerializedName("totalquestion") val totalQuestion : Int?,
 
 
 )

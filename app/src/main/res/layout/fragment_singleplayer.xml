@@ -120,29 +120,14 @@
     </LinearLayout>
 
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:visibility="invisible"
-        app:adSize="SMART_BANNER"
-        app:adUnitId="ca-app-pub-4275218970636966/4595713066"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/powerButton"></com.google.android.gms.ads.AdView>
-
     <ImageButton
         android:id="@+id/powerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="154dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="155dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/adView"
@@ -150,5 +135,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondLayout"
         app:srcCompat="@drawable/passicon" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:visibility="visible"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-4275218970636966/4595713066"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/powerButton"></com.google.android.gms.ads.AdView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

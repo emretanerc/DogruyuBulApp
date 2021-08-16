@@ -2,9 +2,7 @@ package com.etcmobileapps.dogrusunuogren.ui.fragments
 
 
 import Question
-import android.app.Activity
-import android.content.ContentValues
-import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,7 +12,6 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -51,6 +48,7 @@ class SinglePlayerFragment : Fragment() {
     private final var TAG = "MainActivity"
     lateinit var mAdView : AdView
     var level: Int = 0
+    var totalQuestion: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,10 +80,10 @@ class SinglePlayerFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        getQuestion()
+        getPrefences()
         setOnclick()
         //loadAdRewarded()
-        loadBanner()
+
     }
 
 
@@ -96,7 +94,7 @@ class SinglePlayerFragment : Fragment() {
     }
 
 
-    fun getQuestion() {
+    fun getQuestion(totalQuestion: Int?) {
 
 
 
@@ -116,6 +114,7 @@ class SinglePlayerFragment : Fragment() {
 
                 var value = response.body()
                 val rnds = (1..42).random()
+
                 trueValue = value?.get(rnds)?.trueword.toString()
                 falseValue = value?.get(rnds)?.falseword.toString()
 
@@ -123,6 +122,7 @@ class SinglePlayerFragment : Fragment() {
 
                 resetButtons()
                 shuffleWords(trueValue!!,falseValue!!)
+                loadBanner()
 
             }
 
@@ -136,12 +136,33 @@ class SinglePlayerFragment : Fragment() {
             currentJoker = currentJoker + 1
             binding.jokerValue.text = currentJoker.toString()
             binding.jokerLayout.setBackgroundResource(R.drawable.jokericon)
-            binding.jokerLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
-            binding.powerButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
+         //   binding.jokerLayout.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
+         //   binding.powerButton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.zoomin))
         }
 
 
     }
+
+
+    fun getPrefences() {
+
+
+        val prefences = requireActivity().getSharedPreferences("SCORE", Context.MODE_PRIVATE)
+
+        var totalQuestionValue = prefences.getInt("KEY_TOTALQUESTION",0)
+
+        totalQuestion = totalQuestionValue
+
+
+        getQuestion(totalQuestion)
+
+
+
+
+
+
+    }
+
 
     fun clickedUpButton (answer:String) {
 
@@ -241,13 +262,13 @@ class SinglePlayerFragment : Fragment() {
 
 
                 setScore()
-                getQuestion()
+                getQuestion(totalQuestion)
             }, 500)
         } else {
             Handler(Looper.getMainLooper()).postDelayed({
                 /* Create an Intent that will start the Menu-Activity. */
 
-                getQuestion()
+                getQuestion(totalQuestion)
             }, 1000)
         }
 
