@@ -34,4 +34,4 @@ Teknik Bilgiler
 
 
 
-[![IMAGE ALT TEXT](https://etcmobileapps.com/preview.png)](https://youtu.be/FbG3rbEItmc "Doğruyu Bul Mobil Kelime Oyunu")
+[![YOUTUBE VIDEO İZLE](https://etcmobileapps.com/preview.png)](https://youtu.be/FbG3rbEItmc "Doğruyu Bul Mobil Kelime Oyunu")
