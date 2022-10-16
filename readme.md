@@ -4,7 +4,9 @@
 Yazımı karıştırılan kelimelerin karşınıza soru olarak geldiği bir mobil oyun.
 
 
+<img src="https://play-lh.googleusercontent.com/DU8JbyoHSlcE1BGHDbDfXyBbMCSncFkHjiOq_iBN0zATaHokLnv_jTqUJxEIAcm0OG4=w5120-h2880" width="240" height="500">
 
+<img src="https://play-lh.googleusercontent.com/_ej3L0QyQXidLhEcPHGXUYF6KLw91MhuF2QHp82SUCohvBUNz7h2IvcWZ-HpA4eowQ=w5120-h2880" width="240" height="500">
 
 
 Uygulama Özellikleri
